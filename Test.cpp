@@ -151,7 +151,4 @@ TEST_CASE("Test: remove()") {
     CHECK_NOTHROW(t.remove("Isaac"));
     CHECK_NOTHROW(t.remove("Rachel"));
     CHECK_NOTHROW(t.remove("Yaakov"));
-
-
 }
-

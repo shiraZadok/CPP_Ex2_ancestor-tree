@@ -8,6 +8,7 @@
 #include "FamilyTree.hpp"
 
 #include <iostream>
+#include <ostream>
 using namespace std;
 
 int main() {

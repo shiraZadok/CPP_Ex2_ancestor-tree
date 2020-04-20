@@ -3,9 +3,10 @@
 //
 # pragma once
 #include <string>
+#include <iostream>
 using namespace std;
 
-namespace family{
+namespace family {
     class Tree;
 }
 
@@ -15,26 +16,17 @@ private:
     Tree *father,*mother;
 
 public:
-    Tree(){
-        this->root="Yosef";
-        this->addFather("Yosef", "Yaakov")
-                .addMother("Yosef", "Rachel")
-                .addMother("Rachel","?")
-                .addFather("Rachel","Lavan")
-                .addFather("Yaakov", "Isaac")
-                .addMother("Yaakov", "Rivka")
-                .addMother("Rivka","??")
-                .addFather("Rivka","Betoel")
-                .addFather("Isaac", "Avraham")
-                .addMother("Isaac", "Sara")
-                .addFather("Avraham", "Terah")
-                .addFather("Terah","Nachor");
-    }
-
+    int depthTree=0;
     Tree(string root){ //constructor
         this->root=root;
         this->father= nullptr;
         this->mother= nullptr;
+    }
+    ~Tree(){
+        if (this->father!= nullptr)
+            delete this->father;
+        if (this->mother!= nullptr)
+            delete this->mother;
     }
 
     Tree& addFather(string root,string father);
@@ -43,4 +35,14 @@ public:
     string find(string relation);
     void display();
     void remove(string remove);
+
+private:
+    bool addFather(Tree *tree, string root, string father);
+    bool addMother(Tree *tree, string root, string mother);
+    void display(Tree *tree,string* myFamily,int depth);
+    bool remove(Tree *root,string toRemove);
+    string relation(Tree *tree,string name,int depth,int gender);
+    string whatTheRelation(int depth,int gender);
+    string find(Tree *tree,string relation,int depth,int gender);
 };
+
