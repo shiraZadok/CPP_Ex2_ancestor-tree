@@ -16,7 +16,7 @@ private:
     Tree *father,*mother;
 
 public:
-    int depthTree=0;
+    static int depthTree;
     Tree(string root){ //constructor
         this->root=root;
         this->father= nullptr;

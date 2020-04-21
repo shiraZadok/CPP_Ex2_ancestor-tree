@@ -8,6 +8,7 @@ using namespace std;
 using namespace family;
 
 static string relationM[][2] = {{"me"},{"father","mother"},{"grandfather","grandmother"}};
+int family::Tree::depthTree = 0;
 
 Tree& Tree::addFather(string root,string father){
     if (addFather(this,root,father)) return *this;
@@ -20,6 +21,7 @@ bool Tree::addFather(Tree *tree, string root, string father){
         if (tree->father == nullptr){
             tree->father = new Tree(father);
             if (tree->mother == nullptr) Tree::depthTree++; //update depth of the tree
+            int temp = Tree::depthTree;
             return true;
         } else throw runtime_error("addFather() throw - There is already had father to: "+root);
     } else {
@@ -144,3 +146,26 @@ bool Tree::remove(Tree* tree, string toRemove){
     }
     return remove(tree->father,toRemove) || remove(tree->mother,toRemove);
 }
+
+//int main() {
+//
+//    family::Tree T ("Yosef");
+//    T.addFather("Yosef", "Yaakov");
+//    T.addMother("Yosef", "Rachel");
+//    T.addFather("Yaakov", "Isaac");
+//    T.addMother("Yaakov", "Rivka");
+//    T.addFather("Rachel", "Avi");
+//    T.addMother("Rachel", "Ruti");
+//    T.addFather("Isaac", "Avraham");
+//    T.addMother("Isaac", "Ruti");
+//    T.addFather("Avraham", "Yosi");
+//    T.addMother("Avraham", "Shelly");
+//    T.addFather("Avi", "Israel");
+//    T.addMother("Avi", "Sara");
+//
+//    //T.display();
+//
+//     cout << Tree::depthTree << endl;
+//
+//	T.display();
+//}
