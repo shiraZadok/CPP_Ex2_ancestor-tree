@@ -21,7 +21,6 @@ bool Tree::addFather(Tree *tree, string root, string father){
         if (tree->father == nullptr){
             tree->father = new Tree(father);
             if (tree->mother == nullptr) Tree::depthTree++; //update depth of the tree
-            int temp = Tree::depthTree;
             return true;
         } else throw runtime_error("addFather() throw - There is already had father to: "+root);
     } else {
