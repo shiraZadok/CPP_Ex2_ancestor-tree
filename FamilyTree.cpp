@@ -145,34 +145,3 @@ bool Tree::remove(Tree* tree, string toRemove){
     }
     return remove(tree->father,toRemove) || remove(tree->mother,toRemove);
 }
-//
-//int main() {
-//
-//    family::Tree T ("Yosef");
-//    T.addFather("Yosef", "Yaakov");
-//    T.addMother("Yosef", "Rachel");
-//    T.addFather("Yaakov", "Isaac");
-//    T.addMother("Yaakov", "Rivka");
-//    T.addFather("Rachel", "Avi");
-//    T.addMother("Rachel", "Ruti");
-//    T.addFather("Isaac", "Avraham");
-//    T.addMother("Isaac", "Ruti");
-//    T.addFather("Avraham", "Yosi");
-//    T.addMother("Avraham", "Shelly");
-//    T.addFather("Avi", "Israel");
-//    T.addMother("Avi", "Sara");
-//
-//    cout << T.deptht << endl;
-//    T.display();
-//
-//    family::Tree G ("Yosef");
-//    G.addFather("Yosef", "Yaakov")
-//            .addMother("Yosef", "Rachel")
-//            .addFather("Yaakov", "Isaac")
-//            .addMother("Yaakov", "Rivka")
-//            .addFather("Isaac", "Avraham")
-//            .addFather("Avraham", "Terah");
-//
-//    cout << G.deptht << endl;
-//    G.display();
-//}
