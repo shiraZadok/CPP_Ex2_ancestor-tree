@@ -114,7 +114,14 @@ void Tree::display(Tree *tree,string* myFamily,int depth) {
         display(tree->mother,myFamily,depth);
     }
 }
-
+/* display for example:
+                             Yosef
+                       Yaakov _ Rachel
+                  Isaac _ Rivka _ Lavan _ RaMother
+             Avraham _ Sara _ Betouel _ RiMother
+        Terah
+   Nachor 
+ */
 void Tree::remove(string toRemove){
     if (this->root == toRemove)
         throw runtime_error("The root cannot be deleted");
