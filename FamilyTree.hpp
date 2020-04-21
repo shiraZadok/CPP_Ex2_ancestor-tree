@@ -11,7 +11,7 @@ namespace family {
 }
 
 class family::Tree{
-public:
+private:
     string root;
     int deptht;
     Tree *father,*mother;
