@@ -45,4 +45,3 @@ private:
     string whatTheRelation(int depth,int gender);
     string find(Tree *tree,string relation,int depth,int gender);
 };
-

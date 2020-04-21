@@ -55,7 +55,7 @@ bool Tree::addMother(Tree *tree, string root, string mother){
 
 string Tree::relation(string name){
     string ans = relation(this,name,0,0);
-    return ans!="" ? ans+ "\n" : "unrelated";
+    return ans!="" ? ans : "unrelated";
 }
 
 string Tree::relation(Tree *tree,string name,int depth,int gender){
@@ -63,12 +63,11 @@ string Tree::relation(Tree *tree,string name,int depth,int gender){
     //string whoIAM=tree->root;
     if (tree->root == name)
         return whatTheRelation(depth,gender);
-    if (tree->father != nullptr) {
+    if (tree->father != nullptr)
         ans = relation(tree->father,name,++depth,0);
-    }
-    if (ans == "" && tree->mother != nullptr){
+    else depth++;
+    if (ans == "" && tree->mother != nullptr)
         ans = relation(tree->mother, name,depth,1);
-    }
     return ans;
 }
 
@@ -92,12 +91,11 @@ string Tree::find(Tree *tree,string relation,int depth,int gender){
     string ans = "";
     if (relation == whatTheRelation(depth,gender))
         return tree->root;
-    if (tree->father != nullptr) {
+    if (tree->father != nullptr) 
         ans = find(tree->father,relation,++depth,0);
-    }
-    if (ans == "" && tree->mother != nullptr){
+    else depth++;
+    if (ans == "" && tree->mother != nullptr)
         ans = find(tree->mother, relation,depth,1);
-    }
     return ans;
 }
 
