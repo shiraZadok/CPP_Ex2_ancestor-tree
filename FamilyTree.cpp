@@ -60,7 +60,6 @@ string Tree::relation(string name){
 
 string Tree::relation(Tree *tree,string name,int depth,int gender){
     string ans = "";
-    //string whoIAM=tree->root;
     if (tree->root == name)
         return whatTheRelation(depth,gender);
     if (tree->father != nullptr)
