@@ -11,14 +11,15 @@ namespace family {
 }
 
 class family::Tree{
-private:
+public:
     string root;
+    int deptht;
     Tree *father,*mother;
 
 public:
-    static int depthTree;
     Tree(string root){ //constructor
         this->root=root;
+        this->deptht=0;
         this->father= nullptr;
         this->mother= nullptr;
     }

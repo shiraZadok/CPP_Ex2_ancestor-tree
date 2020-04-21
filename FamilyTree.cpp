@@ -8,7 +8,6 @@ using namespace std;
 using namespace family;
 
 static string relationM[][2] = {{"me"},{"father","mother"},{"grandfather","grandmother"}};
-int family::Tree::depthTree = 0;
 
 Tree& Tree::addFather(string root,string father){
     if (addFather(this,root,father)) return *this;
@@ -20,7 +19,7 @@ bool Tree::addFather(Tree *tree, string root, string father){
     if (tree->root==root){
         if (tree->father == nullptr){
             tree->father = new Tree(father);
-            if (tree->mother == nullptr) Tree::depthTree++; //update depth of the tree
+            if (tree->mother == nullptr) this->deptht++; //update depth of the tree
             return true;
         } else throw runtime_error("addFather() throw - There is already had father to: "+root);
     } else {
@@ -42,7 +41,7 @@ bool Tree::addMother(Tree *tree, string root, string mother){
     if (tree->root==root){
         if (tree->mother== nullptr){
             tree->mother = new Tree(mother);
-            if (tree->father == nullptr) Tree::depthTree++; //update depth of the tree
+            if (tree->father == nullptr) this->deptht++; //update depth of the tree
             return true;
         } else throw runtime_error("addMother() throw - There is already had mother to: "+ root);
     } else  {
@@ -91,7 +90,7 @@ string Tree::find(Tree *tree,string relation,int depth,int gender){
     string ans = "";
     if (relation == whatTheRelation(depth,gender))
         return tree->root;
-    if (tree->father != nullptr) 
+    if (tree->father != nullptr)
         ans = find(tree->father,relation,++depth,0);
     else depth++;
     if (ans == "" && tree->mother != nullptr)
@@ -100,10 +99,11 @@ string Tree::find(Tree *tree,string relation,int depth,int gender){
 }
 
 void Tree::display(){
-    string myFamily[Tree::depthTree];
+    int size = this->deptht +1;
+    string myFamily[size];
     display(this,myFamily,0);
-    for(int i = 0; i < Tree::depthTree; ++i){
-        for (int j = 0; j <(Tree::depthTree*4)-(i*5) ; ++j) {cout<<" ";} //to make spaces in print
+    for(int i = 0; i < size; ++i){
+        for (int j = 0; j <(size*4)-(i*5) ; ++j) {cout<<" ";} //to make spaces in print
         cout << myFamily[i].substr(0, myFamily[i].size()-3) << "\n";
     }
 }
@@ -145,3 +145,34 @@ bool Tree::remove(Tree* tree, string toRemove){
     }
     return remove(tree->father,toRemove) || remove(tree->mother,toRemove);
 }
+//
+//int main() {
+//
+//    family::Tree T ("Yosef");
+//    T.addFather("Yosef", "Yaakov");
+//    T.addMother("Yosef", "Rachel");
+//    T.addFather("Yaakov", "Isaac");
+//    T.addMother("Yaakov", "Rivka");
+//    T.addFather("Rachel", "Avi");
+//    T.addMother("Rachel", "Ruti");
+//    T.addFather("Isaac", "Avraham");
+//    T.addMother("Isaac", "Ruti");
+//    T.addFather("Avraham", "Yosi");
+//    T.addMother("Avraham", "Shelly");
+//    T.addFather("Avi", "Israel");
+//    T.addMother("Avi", "Sara");
+//
+//    cout << T.deptht << endl;
+//    T.display();
+//
+//    family::Tree G ("Yosef");
+//    G.addFather("Yosef", "Yaakov")
+//            .addMother("Yosef", "Rachel")
+//            .addFather("Yaakov", "Isaac")
+//            .addMother("Yaakov", "Rivka")
+//            .addFather("Isaac", "Avraham")
+//            .addFather("Avraham", "Terah");
+//
+//    cout << G.deptht << endl;
+//    G.display();
+//}
