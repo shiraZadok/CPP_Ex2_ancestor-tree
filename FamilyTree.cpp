@@ -126,9 +126,8 @@ void Tree::display(Tree *tree,string* myFamily,int depth) {
 void Tree::remove(string toRemove){
     if (this->root == toRemove)
         throw runtime_error("The root cannot be deleted");
-    if(!remove(this,toRemove)) {
+    if(!remove(this,toRemove))
         throw runtime_error("This name do not exist in the tree: " + toRemove);
-    }
 }
 
 bool Tree::remove(Tree* tree, string toRemove){
