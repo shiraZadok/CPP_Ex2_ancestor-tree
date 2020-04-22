@@ -9,7 +9,7 @@ using namespace std;
 namespace family {
     class Tree;
 }
-//
+
 class family::Tree{
 private:
     string root;
