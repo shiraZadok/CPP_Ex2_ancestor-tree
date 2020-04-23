@@ -15,20 +15,15 @@ Tree& Tree::addFather(string root,string father){
 }
 
 bool Tree::addFather(Tree *tree, string root, string father){
-    bool flag = false;
+    if(tree == nullptr) return false;
     if (tree->root==root){
         if (tree->father == nullptr){
             tree->father = new Tree(father);
             if (tree->mother == nullptr) this->deptht++; //update depth of the tree
             return true;
         } else throw runtime_error("addFather() throw - There is already had father to: "+root);
-    } else {
-        if(tree->father != nullptr)
-            flag = addFather(tree->father, root, father);
-        if(!flag && tree->mother != nullptr)
-            flag = addFather(tree->mother, root, father);
     }
-    return flag;
+    return addFather(tree->father,root,father) || addFather(tree->mother,root,father);
 }
 
 Tree& Tree::addMother(string root,string mother){
@@ -37,20 +32,15 @@ Tree& Tree::addMother(string root,string mother){
 }
 
 bool Tree::addMother(Tree *tree, string root, string mother){
-    bool flag = false;
+    if(tree == nullptr) return false;
     if (tree->root==root){
         if (tree->mother== nullptr){
             tree->mother = new Tree(mother);
             if (tree->father == nullptr) this->deptht++; //update depth of the tree
             return true;
         } else throw runtime_error("addMother() throw - There is already had mother to: "+ root);
-    } else  {
-        if(tree->father != nullptr)
-            flag = addMother(tree->father, root, mother);
-        if(!flag && tree->mother != nullptr)
-            flag = addMother(tree->mother, root, mother);
     }
-    return flag;
+    return addMother(tree->father,root,mother) || addMother(tree->mother,root,mother);
 }
 
 string Tree::relation(string name){
@@ -126,8 +116,9 @@ void Tree::display(Tree *tree,string* myFamily,int depth) {
 void Tree::remove(string toRemove){
     if (this->root == toRemove)
         throw runtime_error("The root cannot be deleted");
-    if(!remove(this,toRemove))
+    if(!remove(this,toRemove)) {
         throw runtime_error("This name do not exist in the tree: " + toRemove);
+    }
 }
 
 bool Tree::remove(Tree* tree, string toRemove){
