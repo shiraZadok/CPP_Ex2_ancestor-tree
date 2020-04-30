@@ -17,13 +17,13 @@ private:
     Tree *father,*mother;
 
 public:
-    Tree(string root){ //constructor
+    Tree(string root){ //Constructor
         this->root=root;
         this->deptht=0;
         this->father= nullptr;
         this->mother= nullptr;
     }
-    ~Tree(){
+    ~Tree(){ //Destructor
         if (this->father!= nullptr)
             delete this->father;
         if (this->mother!= nullptr)
