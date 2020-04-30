@@ -60,6 +60,7 @@ string Tree::relation(Tree *tree,string name,int depth,int gender){
     return ans;
 }
 
+//static string relationM[][2] = {{"me"},{"father","mother"},{"grandfather","grandmother"}};
 string Tree::whatTheRelation(int depth,int gender){
     int numOfGreat= depth-2;
     if (numOfGreat >= 1){
